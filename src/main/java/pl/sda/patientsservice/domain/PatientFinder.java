@@ -17,7 +17,9 @@ public class PatientFinder {
     private final PatientRepository patientRepository;
 
     public List<PatientDto> findAll() {
-        return patientRepository.findAll().stream().map(Patient::toDto).collect(Collectors.toList());
+        List<Patient> all = patientRepository.findAll();
+
+        return all.stream().map(Patient::toDto).collect(Collectors.toList());
     }
 
     public Optional<PatientDto> findOne(Long id) {
