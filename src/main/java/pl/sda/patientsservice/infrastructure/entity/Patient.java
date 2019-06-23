@@ -27,7 +27,14 @@ public class Patient {
     @Column(name = "last_name")
     private String lastName;
 
+    @Column(length = 11)
     private String pesel;
+
+    @OneToOne(mappedBy = "patient", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private MedicalHistory history;
+
+    @Embedded
+    private Address address;
 
     public static Patient fromDto(PatientDto dto) {
         return Patient.builder()
